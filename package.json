@@ -1,0 +1,22 @@
+{
+  "name": "web-canvas-api-tool",
+  "version": "1.0.0",
+  "description": "just uses the api from canvas to do cool things",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamkhan47/web-canvas-api-tool.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/adamkhan47/web-canvas-api-tool/issues"
+  },
+  "homepage": "https://github.com/adamkhan47/web-canvas-api-tool#readme"
+}
