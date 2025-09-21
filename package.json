@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/adamkhan47/web-canvas-api-tool/issues"
   },
-  "homepage": "https://github.com/adamkhan47/web-canvas-api-tool#readme"
+  "homepage": "https://github.com/adamkhan47/web-canvas-api-tool#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
 }
