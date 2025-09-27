@@ -1,1 +1,2 @@
 port: 4000 # pick a port.
+canvasDistrictUrl : canvas.mckinneyisd.net # enter your canvas Domain
