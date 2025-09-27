@@ -1,4 +1,4 @@
-let canvasToken;
+let canvasToken = "";
 window.onload = function() {
     try {
         canvasToken = localStorage.getItem("token");
@@ -8,7 +8,7 @@ window.onload = function() {
 };
 function setToken() {
     let token = prompt("Enter your Canvas API Token");
-    canvasToken = thing;
+    canvasToken = token;
     localStorage.setItem("token", token);
-    document.getElementById("token").innerHTML = token.substring(0, 4);
+    document.getElementById("token").innerHTML = canvasToken.substring(0, 4);
 }
