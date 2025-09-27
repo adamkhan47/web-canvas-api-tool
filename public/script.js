@@ -12,3 +12,8 @@ function setToken() {
     localStorage.setItem("token", token);
     document.getElementById("token").innerHTML = canvasToken.substring(0, 4);
 }
+async function retrieveCanvasRawData() {
+    const res = await fetch('/rawData?token='+canvasToken);
+    const data = await res.text();
+    document.getElementById("dataText").innerHTML = data;
+}
