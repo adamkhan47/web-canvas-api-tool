@@ -12,6 +12,10 @@ const PORT = config.port;
 const districtUrl = config.canvasDistrictUrl;
 const betterConsole = config.alerts;
 
+let LISTENING = config.listen;
+if (LISTENING === "local") {LISTENING = '127.0.0.1';}
+else if (LISTENING === "all") {LISTENING = '0.0.0.0'} 
+
 
 async function canvasAPI(token, link) {
   let url = "https://" + districtUrl + link + token; let result;
@@ -84,6 +88,7 @@ app.get('/cleanJson', async (req, res) => {
 
 app.use(express.static(path.join(__dirname, "public")));
 
-app.listen(PORT, () => {
+app.listen(PORT, LISTENING, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Listening on ${LISTENING}`);
 });
