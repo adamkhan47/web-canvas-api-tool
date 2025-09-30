@@ -2,10 +2,14 @@ let canvasToken = "";
 window.onload = async () => {
     try {
         canvasToken = localStorage.getItem("token");
-        if (canvasToken === null || canvasToken === undefined) {throw new Error("ok")};
+        if (canvasToken === null || canvasToken === undefined || canvasToken === "null" || canvasToken === "") {throw new Error("ok")};
         setPfpAndUser();
     }
-    catch(error) {setToken();}
+    catch(error) {
+        setToken();
+        document.getElementById("name").innerHTML = "Login...";
+        document.getElementById("pfp").src = 'nopfp.png';
+    }
 };
 
 function setToken() {
@@ -25,7 +29,7 @@ async function setPfpAndUser() {
     let actualData = JSON.parse(data);
     let pfp = actualData.avatar_url;
     let name = actualData.first_name;
-    document.getElementById("name").innerHTML = name
+    document.getElementById("name").innerHTML = name;
     document.getElementById("pfp").src = pfp;
 }
 async function cleanJson() {
