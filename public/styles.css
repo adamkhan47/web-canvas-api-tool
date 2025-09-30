@@ -77,3 +77,8 @@ img {
     border-radius: 20rem;
     outline: 5px solid white;
 }
+.profile {
+    position: relative;
+    left: 5rem;
+    bottom: 1rem;
+}
