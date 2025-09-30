@@ -74,4 +74,6 @@ h3 {
 }
 img {
     width: 5rem;
+    border-radius: 20rem;
+    outline: 5px solid white;
 }
