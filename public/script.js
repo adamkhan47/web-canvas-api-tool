@@ -27,3 +27,8 @@ async function setPfpAndUser() {
     let name = actualData.first_name;
     document.getElementById("name").innerHTML = name + "  "+ '<img src="' + pfp + '" alt="Username">';
 }
+async function cleanJson() {
+    const res = await fetch('/cleanJson?token='+canvasToken);
+    const data = await res.text();
+    document.getElementById("dataText").innerHTML = data;
+}
