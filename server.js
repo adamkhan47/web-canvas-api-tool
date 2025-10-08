@@ -17,8 +17,8 @@ if (LISTENING === "local") {LISTENING = '127.0.0.1';}
 else if (LISTENING === "all") {LISTENING = '0.0.0.0'} 
 
 
-async function canvasAPI(token, link) {
-  let url = "https://" + districtUrl + link + token; let result;
+async function canvasAPI(token, link, extra) {
+  let url = "https://" + districtUrl + link + token + extra; let result;
   console.log(url);
   try {
     const response = await fetch(url);
@@ -39,7 +39,7 @@ app.get('/rawData', async (req, res) => {
   console.log
   try {
     if (!arrayThing.token) {throw new Error("crash.");}
-    res.send(await canvasAPI(arrayThing.token, "/api/v1/users/self?access_token="));
+    res.send(await canvasAPI(arrayThing.token, "/api/v1/users/self?access_token=", ""));
     if (betterConsole) {console.log("Sent canvas data...");}
   }
   catch (error) {res.send("Not correct way to send data"); console.error(error)};
@@ -50,7 +50,7 @@ app.get('/cleanJson', async (req, res) => {
   let arrayThing = req.query;
   try { 
     if (!arrayThing.token) {throw new Error("crash.");}
-    let data = await canvasAPI(arrayThing.token, "/api/v1/users/self?access_token="); 
+    let data = await canvasAPI(arrayThing.token, "/api/v1/users/self?access_token=", ""); 
     // #region 
     // I copied most of this from my java project and rewrote into JS.
     let id = data.id;
@@ -81,6 +81,18 @@ app.get('/cleanJson', async (req, res) => {
     //#endregion
     
     res.send(output);
+    if (betterConsole) {console.log("Sent canvas data...");}
+  }
+  catch (error) {res.send("Not correct way to send data"); console.error(error)};
+});
+
+app.get('/rawClassesData', async (req, res) => {
+  if (betterConsole) {console.log("Getting raw data..")};
+  let arrayThing = req.query;
+  console.log
+  try {
+    if (!arrayThing.token) {throw new Error("crash.");}
+    res.send(await canvasAPI(arrayThing.token, "/api/v1/courses?access_token=", "&enrollment_state=active"));
     if (betterConsole) {console.log("Sent canvas data...");}
   }
   catch (error) {res.send("Not correct way to send data"); console.error(error)};
