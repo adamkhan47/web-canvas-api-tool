@@ -37,8 +37,13 @@ async function cleanJson() {
     const data = await res.text();
     document.getElementById("dataText").innerHTML = data;
 }
-async function courseData() {
+async function rawCourseData() {
     const res = await fetch('/rawClassesData?token='+canvasToken);
+    const data = await res.text();
+    document.getElementById("dataText").innerHTML = data;
+}
+async function courseData() {
+    const res = await fetch('/classesData?token='+canvasToken);
     const data = await res.text();
     document.getElementById("dataText").innerHTML = data;
 }

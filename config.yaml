@@ -1,4 +1,3 @@
 port: 4000 # pick a port.
 listen: "all" 
-canvasDistrictUrl : canvas.mckinneyisd.net # enter your canvas Domain
 alerts : true # console.logs for stuff

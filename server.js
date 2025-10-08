@@ -9,7 +9,6 @@ const fileContents = fs.readFileSync('config.yaml', 'utf8');
 const config = yaml.load(fileContents);
 
 const PORT = config.port;
-const districtUrl = config.canvasDistrictUrl;
 const betterConsole = config.alerts;
 
 let LISTENING = config.listen;
@@ -18,7 +17,7 @@ else if (LISTENING === "all") {LISTENING = '0.0.0.0'}
 
 
 async function canvasAPI(token, link, extra) {
-  let url = "https://" + districtUrl + link + token + extra; let result;
+  let url = "https://canvas.instructure.com" + link + token + extra; let result;
   console.log(url);
   try {
     const response = await fetch(url);
@@ -93,6 +92,29 @@ app.get('/rawClassesData', async (req, res) => {
   try {
     if (!arrayThing.token) {throw new Error("crash.");}
     res.send(await canvasAPI(arrayThing.token, "/api/v1/courses?access_token=", "&enrollment_state=active"));
+    if (betterConsole) {console.log("Sent canvas data...");}
+  }
+  catch (error) {res.send("Not correct way to send data"); console.error(error)};
+});
+app.get('/classesData', async (req, res) => {
+  if (betterConsole) {console.log("Getting raw data..")};
+  let arrayThing = req.query;
+  console.log
+  try {
+    if (!arrayThing.token) {throw new Error("crash.");}
+    let data = await canvasAPI(arrayThing.token, "/api/v1/courses?access_token=", "&enrollment_state=active"); let output;
+    let classNames = "";
+    for (let i = 0; i<data.length; i++) {
+      classNames += data[i].name + "<br>";
+    }
+    output = (
+      "Amount of classes: " + data.length + "<br>" +
+      classNames + "<br>"
+
+    );
+
+
+    res.send(output);
     if (betterConsole) {console.log("Sent canvas data...");}
   }
   catch (error) {res.send("Not correct way to send data"); console.error(error)};
