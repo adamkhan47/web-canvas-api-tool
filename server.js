@@ -18,7 +18,6 @@ else if (LISTENING === "all") {LISTENING = '0.0.0.0'}
 
 async function canvasAPI(token, link, extra) {
   let url = "https://canvas.instructure.com" + link + token + extra; let result;
-  console.log(url);
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -86,7 +85,7 @@ app.get('/cleanJson', async (req, res) => {
 });
 
 app.get('/rawClassesData', async (req, res) => {
-  if (betterConsole) {console.log("Getting raw data..")};
+  if (betterConsole) {console.log("Getting raw classes data..")};
   let arrayThing = req.query;
   console.log
   try {
@@ -97,7 +96,7 @@ app.get('/rawClassesData', async (req, res) => {
   catch (error) {res.send("Not correct way to send data"); console.error(error)};
 });
 app.get('/classesData', async (req, res) => {
-  if (betterConsole) {console.log("Getting raw data..")};
+  if (betterConsole) {console.log("Getting class data..")};
   let arrayThing = req.query;
   console.log
   try {
